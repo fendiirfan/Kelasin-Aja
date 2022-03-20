@@ -9,7 +9,7 @@ function test(){
             <Navbar/>
                 <div className='flex'>
                     <Sidebar/>
-                    <DashboardDaftarAkun/>
+                    {/* Contentnya  */}
                 </div>
             <Footer/>
         </div>
