@@ -5,6 +5,7 @@ import Footer from '../../components/footer/Footer';
 import Head from 'next/head';
 
 const DaftarKelas = () => {
+  const data = ["Pendaftaran Akun","Pendaftaran Kelas"]
 	return(
 		<div className="bg-slate-200">
       <Head>
@@ -13,7 +14,7 @@ const DaftarKelas = () => {
       </Head>
       <Navbar/>
       <div className='flex'>
-        <Sidebar/>
+        <Sidebar data={data}/>
         <DashboardDaftarKelas/>
       </div>
       <Footer/>

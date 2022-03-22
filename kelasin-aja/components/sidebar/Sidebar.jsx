@@ -1,7 +1,7 @@
 
 
-const Sidebar = () => {
-	const data = ["Home","Kelas A","Kelas B", "Kelas C"]
+const Sidebar = ({data}) => {
+	console.log(data)
 	
 	return(
 		<div className="pt-[30px] px-[30px] w-[250px] bg-white h-[84vh]">

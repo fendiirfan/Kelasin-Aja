@@ -5,6 +5,7 @@ import Footer from '../../components/footer/Footer';
 import DashboardDaftarAkun from '../../components/dashboard-admin/DashboardDaftarAkun';
 
 export default function Home() {
+  const data = ["Pendaftaran Akun","Pendaftaran Kelas"]
   return (
     <div className="bg-slate-200">
       <Head>
@@ -13,7 +14,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <div className='flex'>
-        <Sidebar/>
+        <Sidebar data={data}/>
         <DashboardDaftarAkun/>
       </div>
       <Footer/>

@@ -48,7 +48,6 @@ export default function DashboardDaftarAkun(){
           SUBMIT
         </button>
       </div>
-     
     </form>
   </div>
   )
