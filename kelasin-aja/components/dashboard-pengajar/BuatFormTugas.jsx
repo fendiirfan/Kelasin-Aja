@@ -1,7 +1,7 @@
 export default function BuatFormTugas(){
     return(
         <div>
-            <div className='flex w-[877px] h-[245px] border-2 border-black items-center justify-center bg-[#C4C4C4] rounded-[8px] shadow-lg'>
+            <div className='flex w-[877px] h-[245px] border-2 border-black items-center justify-center bg-[#C4C4C4] rounded-[8px] shadow-lg text-[100px] text-[white]'>
             KELAS A
             </div>
             <div className='flex w-[877px] h-[582px] border-2 border-black items-center bg-[#ffffff] rounded-[8px] mt-[30px] shadow-lg'>
