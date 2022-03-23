@@ -9,7 +9,7 @@ const Sidebar = ({data}) => {
 			<div>
 				<ul>
 					{data.map((data, dataIdx) => {
-						return( (dataIdx === 0) ?  
+						return( (dataIdx === 1) ?  
 							<li key={dataIdx} className='pb-[10px]'>
 								<div className="border bg-[#053742] rounded-[7px] w-[177px]">
 									<p className="text-center text-[16px] p-[10px] text-white">{data}</p>
