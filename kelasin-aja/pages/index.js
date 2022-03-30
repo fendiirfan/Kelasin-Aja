@@ -5,6 +5,7 @@ import Sidebar from '../components/sidebar/Sidebar'
 import Footer from '../components/footer/Footer'
 
 export default function Home() {
+  const data = ["Home","Kelas A","Kelas B", "Kelas C"]
   return (
     <div className="bg-slate-200">
       <Head>
@@ -13,7 +14,7 @@ export default function Home() {
       </Head>
       <Navbar/>
       <div className='flex'>
-        <Sidebar/>
+        <Sidebar data={data}/>
         {/* <h1> Konten </h1> */}
       </div>
       <Footer/>
