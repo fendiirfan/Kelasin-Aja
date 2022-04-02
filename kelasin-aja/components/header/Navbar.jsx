@@ -2,7 +2,7 @@ import {CgProfile} from 'react-icons/cg';
 
 function Navbar(){
   return(
-    <div className='flex justify-between bg-white border-b-2 border-black py-[10px] px-[20px]'>
+    <div className='flex justify-between bg-white border-b-2 border-black py-[10px] px-[20px] sticky top-0 z-10'>
       <div>
         <p className="font-bold text-[31px]">Kelasin</p>
       </div>

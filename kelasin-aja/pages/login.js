@@ -1,5 +1,5 @@
 import Login from "../components/login/Login";
-import Navbar from '../components/header/Navbar'
+import Navbar from '../components/header/Navbar';
 
 
 const login = () => {

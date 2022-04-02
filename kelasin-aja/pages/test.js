@@ -3,19 +3,16 @@ import Sidebar from '../components/sidebar/Sidebar';
 import Footer from '../components/footer/Footer';
 import DashboardDaftarAkun from '../components/dashboard-admin/DashboardDaftarAkun';
 
-function test() {
-    return ( <
-        div className = "bg-slate-200" >
-        <
-        Navbar / >
-        <
-        div className = 'flex' >
-        <
-        Sidebar / > { /* Contentnya  */ } <
-        /div> <
-        Footer / >
-        <
-        /div>
+function test(){
+    return(
+        <div className="bg-slate-200">
+            <Navbar/>
+                <div className='flex'>
+                    <Sidebar/>
+                    {/* Contentnya  */}
+                </div>
+            <Footer/>
+        </div>
     )
 }
 
