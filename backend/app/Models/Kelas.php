@@ -24,4 +24,7 @@ class Kelas extends Model
     public function file() {
         return $this->hasMany(File::class);
     }
+    public function formexam() {
+        return $this->hasMany(FormExam::class);
+    }
 }
