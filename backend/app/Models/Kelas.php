@@ -13,11 +13,15 @@ class Kelas extends Model
         'nama',
     ];
 
-    public function User() {
+    public function user() {
         return $this->hasMany(User::class);
     }
 
     public function conference() {
-        return $this->hasMany(conference::class);
+        return $this->hasMany(Conference::class);
+    }
+
+    public function file() {
+        return $this->hasMany(File::class);
     }
 }

@@ -14,7 +14,7 @@ class Conference extends Model
         'class_id'
     ];
 
-    public function kelas() {
+    public function conference() {
         return $this->belongsTo(Kelas::class);
     }
 }

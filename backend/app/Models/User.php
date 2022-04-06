@@ -21,7 +21,7 @@ class User extends Model
         'password',
     ];
 
-    public function kelas() {
+    public function user() {
         return $this->belongsTo(Kelas::class);
     }
 }
