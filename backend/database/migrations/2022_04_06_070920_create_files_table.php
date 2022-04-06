@@ -16,6 +16,12 @@ return new class extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('class_id');
+            $table->string('file');
+            $table->string('title');
+
+            // Foreign key stuff
+            $table->foreign('class_id')->references('id')->on('kelas');
         });
     }
 
