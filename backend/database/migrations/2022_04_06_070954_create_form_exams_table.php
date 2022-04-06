@@ -16,6 +16,13 @@ return new class extends Migration
         Schema::create('form_exams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('class_id');
+            $table->string('title');
+            $table->string('description');
+            $table->string('link_embed_form');
+
+            // Foreign key stuff
+            $table->foreign('class_id')->references('id')->on('kelas');
         });
     }
 
