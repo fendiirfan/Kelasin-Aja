@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Conference extends Model
+class User_Kelas extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'link_code_conference',
+        'user_id',
         'class_id'
     ];
 
-    public function conference() {
+    public function kelas() {
         return $this->belongsTo(Kelas::class);
     }
 }

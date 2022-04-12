@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('class_id');
             $table->string('jenis_user');
             $table->string('nama');
             $table->string('password');
@@ -23,10 +22,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            // Foreign key stuff
-            $table->foreign('class_id')->references('id')->on('kelas');
-
         });
     }
 

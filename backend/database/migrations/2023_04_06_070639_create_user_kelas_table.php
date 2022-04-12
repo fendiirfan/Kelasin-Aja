@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('conferences', function (Blueprint $table) {
+        Schema::create('user_kelas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('class_id');
-            $table->string('link_code_conference');
+            $table->unsignedBigInteger('user_id');
 
             // Foreign key stuff
             $table->foreign('class_id')->references('id')->on('kelas');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('conferences');
+        Schema::dropIfExists('user_kelas');
     }
 };
