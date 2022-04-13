@@ -15,7 +15,7 @@ class File extends Model
         'title',
     ];
 
-    public function file() {
+    public function kelas() {
         return $this->belongsTo(Kelas::class);
     }
 }

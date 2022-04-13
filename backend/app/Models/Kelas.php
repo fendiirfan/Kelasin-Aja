@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kelas extends Model
 {
     use HasFactory;
+    protected $table = 'kelas'; 
 
     protected $fillable = [
         'nama',
@@ -15,10 +16,6 @@ class Kelas extends Model
 
     public function user() {
         return $this->hasMany(User::class);
-    }
-
-    public function conference() {
-        return $this->hasMany(Conference::class);
     }
 
     public function file() {
