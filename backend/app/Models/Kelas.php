@@ -18,10 +18,6 @@ class Kelas extends Model
         return $this->hasMany(User::class);
     }
 
-    public function conference() {
-        return $this->hasMany(Conference::class);
-    }
-
     public function file() {
         return $this->hasMany(File::class);
     }

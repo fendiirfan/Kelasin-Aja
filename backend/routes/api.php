@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 // user
 Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
     Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showbyid']);

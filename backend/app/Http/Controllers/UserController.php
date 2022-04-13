@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -12,8 +13,7 @@ class UserController extends Controller
     {
         try{
             $user = User::all();
-            dd($user);
-            // response($kelas,200);
+            response($user,200);
         }catch(\Exception $e){
             response("Internal Server Error", 500);
         }
@@ -27,24 +27,36 @@ class UserController extends Controller
                 'password'=>'required',
                 'email'=>'required|email',
             ]);
-            $user = User::create([
-                'jenis_user'=>$data['jenis_user'],
-                'nama'=>$data['nama'],
-                'password'=>$data['pasword'],
-                'email'=>$data['email'],
-            ]);
-
-            $token = $user()->createToken('kelasinToken')->plainTextToken;
-
-            $response = [ 
-                "user"=>$user,
-                "token"=>$token,
-            ];
-
-            return response($response, 200);
+            $user = User::create($data);
+            return response("Success", 200);
         }catch(\Illuminate\Validation\ValidationException $e){
             return response("Nama Tidak Valid", 400);
         }catch(\Exception $e){
+            return response("Internal Server Error", 500);
+        }
+    }
+
+    public function login(Request $request){
+        try{
+            $this->validate($request, [
+                'email'=>'required|email',
+                'password'=>'required',
+            ]);
+
+            if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+                $user = Auth::User();
+                $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+                $data = [
+                    'token'=>$token,
+                    'user'=>$user
+                ];
+                return response($data, 200);
+            }else{
+                return response("Invalid Credentials", 401);
+            }
+        }catch (\Illuminate\Validation\ValidationException $e) {
+            return response("Email or Password not valid", 400);
+        } catch (\Exception $e) {
             return response("Internal Server Error", 500);
         }
     }
