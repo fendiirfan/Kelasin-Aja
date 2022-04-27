@@ -13,9 +13,9 @@ class UserController extends Controller
     {
         try{
             $user = User::all();
-            response($user,200);
+            return response($user,200);
         }catch(\Exception $e){
-            response("Internal Server Error", 500);
+            return response("Internal Server Error", 500);
         }
     }
 
