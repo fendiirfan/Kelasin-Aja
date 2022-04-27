@@ -1,5 +1,24 @@
+import axios from "axios";
+import { useEffect, useState } from 'react';
 
 const Login = () => {
+
+  const [inputs, setInputs ] = useState({
+    email : "",
+    password : ""
+  })
+
+  useEffect(() => {
+    axios.post("http://localhost:8000/api/login", {
+      email : "zendy@gmail.com",
+      password : 'qwerty123'
+    }).then((res) => {
+      console.log(res.data)
+    }).catch((e) => {
+      console.log(e.response)
+    })
+  })
+
   return(
     <div className="grid place-items-center h-[80vh] mx-auto">
       <div className="flex flex-col w-[450px] bg-white">
