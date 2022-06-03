@@ -32,3 +32,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
     Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
 });
+

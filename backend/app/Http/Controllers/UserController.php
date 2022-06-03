@@ -61,4 +61,14 @@ class UserController extends Controller
             return response("Internal Server Error", 500);
         }
     }
+    public function logout()
+    {
+        try {
+            Auth::guard('web')->logout();
+            auth()->user()->tokens()->delete();
+            return response("Sukses", 200);
+        } catch (\Exception $e) {
+            return response("Internal Server Error", 500);
+        }
+    }
 }
