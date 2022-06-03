@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\UserKelas;
+use Illuminate\Support\Facades\DB;
 
 class KelasController extends Controller
 {
@@ -48,8 +49,14 @@ class KelasController extends Controller
 
     public function getKelasByIdUser(int $id){
         try{
-            $listKelas = UserKelas::where('user_id', $id)->get();
-            // dd(UserKelas::all());
+            //SELECT * FROM kelas JOIN user_kelas on user_kelas.class_id = kelas.id WHERE user_id = 1
+            $listKelas = DB::table('kelas')
+            ->join('user_kelas', function ($join) use($id) {
+                $join->on('user_kelas.class_id', '=', 'kelas.id')
+                     ->where('user_id', '=', $id);
+            })
+            ->get();
+            return response($listKelas, 200);
         }catch(\Exception $e){
             response("Internal Server Error", 500);
         }
