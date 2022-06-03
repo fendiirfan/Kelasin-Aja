@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
         try{
             $user = User::all();
-            response($user,200);
+            return response($user,200);
         }catch(\Exception $e){
             response("Internal Server Error", 500);
         }
