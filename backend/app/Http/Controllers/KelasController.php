@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\UserKelas;
 
 class KelasController extends Controller
 {
@@ -30,15 +31,14 @@ class KelasController extends Controller
         }
     }
 
-    public function store(Request $request){
+    public function createKelas(Request $request){
+        // return response("create kelas " . $request->nama, 200);
         try{
-            $this->validate($request, [
+            $data = $request->validate([
                 'nama' => 'required',
             ]);
-            $request = Kelas::create([
-                'nama' => $request->nama,
-            ]);
-            return response("success", 200);
+            Kelas::create($data);
+            return response("Kelas Terbuat", 200);
         }catch(\Illuminate\Validation\ValidationException $e){
             return response("Nama Tidak Valid", 400);
         }catch(\Exception $e){
@@ -46,6 +46,13 @@ class KelasController extends Controller
         }
     }
 
-
+    public function getKelasByIdUser(int $id){
+        try{
+            $listKelas = UserKelas::where('user_id', $id)->get();
+            // dd(UserKelas::all());
+        }catch(\Exception $e){
+            response("Internal Server Error", 500);
+        }
+    }
 
 }
