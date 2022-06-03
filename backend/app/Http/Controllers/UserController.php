@@ -27,6 +27,7 @@ class UserController extends Controller
                 'password'=>'required',
                 'email'=>'required|email',
             ]);
+            $data['password'] = bcrypt($data['password']);
             $user = User::create($data);
             return response("Success", 200);
         }catch(\Illuminate\Validation\ValidationException $e){
@@ -38,17 +39,17 @@ class UserController extends Controller
 
     public function login(Request $request){
         try{
-            $this->validate($request, [
-                'email'=>'required|email',
-                'password'=>'required',
+            $credentials = $request->validate([
+                'email' => 'required|email:dns',
+                'password' => 'required',
             ]);
 
-            if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password])){
+            if(Auth::attempt($credentials)){
                 $user = Auth::User();
                 $token = $user->createToken('Laravel Password Grant Client')->accessToken;
                 $data = [
                     'token'=>$token,
-                    'user'=>$user
+                    'user'=>$user,
                 ];
                 return response($data, 200);
             }else{
