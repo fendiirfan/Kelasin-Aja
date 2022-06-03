@@ -1,23 +1,51 @@
 import axios from "axios";
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
 
 const Login = () => {
-
+  const router = useRouter()
   const [inputs, setInputs ] = useState({
     email : "",
-    password : ""
+    password : "",
+    role : ""
   })
 
-  useEffect(() => {
+  const handleLogin = (e) => {
+    e.preventDefault()
     axios.post("http://localhost:8000/api/login", {
-      email : "zendy@gmail.com",
-      password : 'qwerty123'
+      email : inputs.email,
+      password : inputs.password,
+      // role : inputs.role.toLowerCase()
     }).then((res) => {
-      console.log(res.data)
+      console.log(res)
+      console.log(res.status)
+      if(res.status === 200){
+        if(inputs.role.toLowerCase() === "admin"){
+          router.push("/admin/DaftarAkun")
+        } else if (inputs.role.toLowerCase() === "pengajar"){
+          router.push("/")
+        } else {
+          router.push("/")
+        }
+      }
+
     }).catch((e) => {
       console.log(e.response)
     })
-  })
+  }
+
+  // useEffect(() => {
+  //   axios.post("http://localhost:8000/api/login", {
+  //     email : "zendy@gmail.com",
+  //     password : 'qwerty123'
+  //   }).then((res) => {
+  //     console.log(res.data)
+  //   }).catch((e) => {
+  //     console.log(e.response)
+  //   })
+  // })
+
+  // console.log(inputs)
 
   return(
     <div className="grid place-items-center h-[80vh] mx-auto">
@@ -27,37 +55,37 @@ const Login = () => {
         <form>
           <div>
             <label className="text-[18px] font-[400] leading-[27px]">Email</label>
-            <input type="email" id="email" name="email"
+            <input type="email" id="email" name="email" onChange={(e) => {setInputs({...inputs, [e.target.name] : e.target.value})}}
               className="w-full text-base px-4 py-2 border border-gray-600 rounded-[15px] focus:outline-none focus:border-black"
             />
           </div>
           <div>
             <label className="text-[18px] font-[400] leading-[27px]">Password</label>
-            <input type="password" id="password" name="password" 
+            <input type="password" id="password" name="password" onChange={(e) => {setInputs({...inputs, [e.target.name] : e.target.value})}}
               className="w-full text-base px-4 py-2 border border-gray-600 rounded-[15px] focus:outline-none focus:border-black"
             />
           </div>
           <div className="flex justify-center space-x-3 font-[700] text-[18px] leading-[27px] py-4">
             <div>
-              <input type="radio" value="Pelajar" id="Pelajar" name="Pelajar"
+              <input type="radio" value="Pelajar" id="Pelajar" name="Pelajar" onChange={(e) => {setInputs({...inputs, ['role'] : e.target.value})}}
                 className="appearance-none rounded-full h-[28px] w-[28px] border border-black bg-white checked:bg-[#031D23] checked:border-black focus:outline-none transition duration-200 float-left mr-4 cursor-pointer"
               />
               <label className="m-0">Pelajar</label>
             </div>
             <div>
-              <input type="radio" value="Pengajar" id="Pengajar" name="Pelajar"
+              <input type="radio" value="Pengajar" id="Pengajar" name="Pelajar" onChange={(e) => {setInputs({...inputs, ['role'] : e.target.value})}}
                   className="appearance-none rounded-full h-[28px] w-[28px] border border-black bg-white checked:bg-[#031D23] checked:border-black focus:outline-none transition duration-200 float-left mr-4 cursor-pointer"
               />
               <label>Pengajar</label>
             </div>
             <div>
-              <input type="radio" value="Admin" id="Admin" name="Pelajar"
+              <input type="radio" value="Admin" id="Admin" name="Pelajar" onChange={(e) => {setInputs({...inputs, ['role'] : e.target.value})}}
                 className="appearance-none rounded-full h-[28px] w-[28px] border border-black bg-white checked:bg-[#031D23] checked:border-black focus:outline-none transition duration-200 float-left mr-4 cursor-pointer"
               />
               <label>Admin</label>
             </div>
           </div>
-          <button type="submit" className="w-full flex justify-center bg-black text-white p-3 rounded-[15px] tracking-wide font-[700] cursor-pointer" onClick={() => (console.log("Pencet"))}>
+          <button type="submit" className="w-full flex justify-center bg-black text-white p-3 rounded-[15px] tracking-wide font-[700] cursor-pointer" onClick={(e) => (handleLogin(e))}>
             Masuk
           </button>
         </form>

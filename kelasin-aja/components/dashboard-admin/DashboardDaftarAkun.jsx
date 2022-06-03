@@ -1,5 +1,14 @@
+import { useState } from "react";
 
 export default function DashboardDaftarAkun(){
+  const [inputs, setInputs] = useState({
+    nama : "",
+    password : "",
+    email : "",
+    pilihKelas : "",
+    role : ""
+  })
+
   return(
   <div className="flex flex-col w-[510px] mx-auto mt-[70px]">
     <h1 className="text-left text-[36px] font-[700] leading-[54px]">Daftarkan Akun</h1>

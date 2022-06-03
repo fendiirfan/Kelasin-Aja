@@ -6,6 +6,7 @@ import DashboardDaftarAkun from '../../components/dashboard-admin/DashboardDafta
 
 export default function Home() {
   const data = ["Pendaftaran Akun","Pendaftaran Kelas"]
+  
   return (
     <div className="bg-slate-200">
       <Head>
