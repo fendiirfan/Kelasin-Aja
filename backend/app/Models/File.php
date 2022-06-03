@@ -11,8 +11,9 @@ class File extends Model
 
     protected $fillable = [
         'class_id',
-        'file',
+        'link',
         'title',
+        'description',
     ];
 
     public function kelas() {

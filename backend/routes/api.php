@@ -23,7 +23,7 @@ Route::post('/register', [\App\Http\Controllers\UserController::class, 'register
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
-    Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showbyid']);
+    Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showById']);
 });
 
 // Kelas
@@ -33,9 +33,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
 });
 
+<<<<<<< HEAD
 //FormExam
 
 Route::post('/exam/store', [\App\Http\Controllers\FormExamController::class, 'store']);
 
 //File
 Route::post('/file/store', [\App\Http\Controllers\FileController::class, 'store']);
+=======
+>>>>>>> 5a9eed7396152c67c6916fc383f0c0d10c78e61f
