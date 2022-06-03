@@ -18,6 +18,15 @@ class UserController extends Controller
             response("Internal Server Error", 500);
         }
     }
+    public function showById(Request $request, $id)
+    {
+        try{
+            $user = User::find($id);
+            return response($user,200);
+        }catch(\Exception $e){
+            response("Internal Server Error", 500);
+        }
+    }
 
     public function register(Request $request){
         try{
