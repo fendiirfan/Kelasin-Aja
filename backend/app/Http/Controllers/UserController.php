@@ -18,6 +18,15 @@ class UserController extends Controller
             response("Internal Server Error", 500);
         }
     }
+    public function showById(Request $request, $id)
+    {
+        try{
+            $user = User::find($id);
+            return response($user,200);
+        }catch(\Exception $e){
+            response("Internal Server Error", 500);
+        }
+    }
 
     public function register(Request $request){
         try{
@@ -57,6 +66,16 @@ class UserController extends Controller
             }
         }catch (\Illuminate\Validation\ValidationException $e) {
             return response("Email or Password not valid", 400);
+        } catch (\Exception $e) {
+            return response("Internal Server Error", 500);
+        }
+    }
+    public function logout()
+    {
+        try {
+            Auth::guard('web')->logout();
+            auth()->user()->tokens()->delete();
+            return response("Sukses", 200);
         } catch (\Exception $e) {
             return response("Internal Server Error", 500);
         }
