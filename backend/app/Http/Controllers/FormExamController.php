@@ -25,4 +25,13 @@ class FormExamController extends Controller
         }
     }
 
+    public function getFormExamByIdKelas(Request $request, $kelasId){
+        try{
+            $exam = FormExam::where('class_id', $kelasId)->get();
+            return response($exam, 200);
+        }catch(\Exception $e){
+            return response("Internal Server Error", 500);
+        }
+    }
+
 }

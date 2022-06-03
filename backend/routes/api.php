@@ -39,8 +39,10 @@ Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'create
 Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
 
 //FormExam
-
-Route::post('/exam/store', [\App\Http\Controllers\FormExamController::class, 'store']);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/exam', [\App\Http\Controllers\FormExamController::class, 'store']);
+    Route::get('/exam/kelasid/{classid}', [\App\Http\Controllers\FormExamController::class, 'getFormExamByIdKelas']);
+});
 
 //File
 Route::post('/file/store', [\App\Http\Controllers\FileController::class, 'store']);
