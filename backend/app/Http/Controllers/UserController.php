@@ -46,7 +46,7 @@ class UserController extends Controller
 
             if(Auth::attempt($credentials)){
                 $user = Auth::User();
-                $token = $user->createToken('Laravel Password Grant Client')->accessToken;
+                $token = $user->createToken('tkn')->plainTextToken;
                 $data = [
                     'token'=>$token,
                     'user'=>$user,
