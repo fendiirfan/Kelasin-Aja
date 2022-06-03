@@ -21,14 +21,10 @@ use Illuminate\Support\Facades\Route;
 // user
 Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
-    Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showbyid']);
-});
+Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showbyid']);
 
 // Kelas
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/kelas', [\App\Http\Controllers\KelasController::class, 'index']);
-    Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
-    Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
-});
+Route::get('/kelas', [\App\Http\Controllers\KelasController::class, 'index']);
+Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
+Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
