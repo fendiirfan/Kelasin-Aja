@@ -28,4 +28,12 @@ class FileController extends Controller
             return response("Internal Server Error", 500);
         }
     }
+    public function getFileByIdKelas(Request $request, $kelasId){
+        try{
+            $exam = File::where('class_id', $kelasId)->get();
+            return response($exam, 200);
+        }catch(\Exception $e){
+            return response("Internal Server Error", 500);
+        }
+    }
 }

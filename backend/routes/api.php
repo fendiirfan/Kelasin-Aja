@@ -44,4 +44,8 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 //File
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/file/{classid}', [\App\Http\Controllers\FileController::class, 'store']);
+    Route::get('/file/{classid}', [\App\Http\Controllers\FileController::class, 'getFileByIdKelas']);
+});
 Route::post('/file/store', [\App\Http\Controllers\FileController::class, 'store']);
