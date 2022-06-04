@@ -34,7 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
     Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'createKelas']);
     Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
-    Route::get('/UserKelas', [\App\Http\Controllers\KelasController::class, 'createUserclass']);
+    Route::post('/UserKelas', [\App\Http\Controllers\KelasController::class, 'createUserclass']);
 });
 
 //FormExam
