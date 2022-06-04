@@ -19,3 +19,9 @@ a {
 * {
   box-sizing: border-box;
 }
+
+#homeScreen {
+  background-image: url(BackgroundHome.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
