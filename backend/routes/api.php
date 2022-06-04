@@ -35,6 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'createKelas']);
     Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
     Route::post('/UserKelas', [\App\Http\Controllers\KelasController::class, 'createUserclass']);
+    Route::patch('/Kelas/{id}', [\App\Http\Controllers\KelasController::class, 'inputLinkMeet']);
 });
 
 //FormExam

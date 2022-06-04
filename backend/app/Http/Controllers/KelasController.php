@@ -83,4 +83,18 @@ class KelasController extends Controller
         }
     }
 
+    public function inputLinkMeet(int $id, Request $request){
+        try {
+            $this->validate($request, [
+                'link_code_conference' => 'required',
+            ]);
+            Kelas::where('id' ,$id)->update([
+                'link_code_conference' => $request->link_code_conference,
+            ]);
+            return response("Link Telah Terinput", 200);
+        } catch (\Exception $e) {
+            return response($e, 400);
+        }
+    }
+
 }
