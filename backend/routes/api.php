@@ -24,24 +24,22 @@ Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'index']);
     Route::get('/user/{id}', [\App\Http\Controllers\UserController::class, 'showbyid']);
+    Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logout']);
 });
 
 // Kelas
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/kelas', [\App\Http\Controllers\KelasController::class, 'index']);
-    Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
-    Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
+    // Route::get('/kelas', [\App\Http\Controllers\KelasController::class, 'index']);
+    // Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
+    // Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
+    Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'createKelas']);
+    Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
+    Route::get('/UserKelas', [\App\Http\Controllers\KelasController::class, 'createUserclass']);
 });
-
-
-//Kelas
-Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'createKelas']);
-Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
-Route::get('/UserKelas', [\App\Http\Controllers\KelasController::class, 'createUserclass']);
 
 //FormExam
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/exam', [\App\Http\Controllers\FormExamController::class, 'store']);
+    Route::post('/exam/{classid}', [\App\Http\Controllers\FormExamController::class, 'store']);
     Route::get('/exam/kelasid/{classid}', [\App\Http\Controllers\FormExamController::class, 'getFormExamByIdKelas']);
 });
 
