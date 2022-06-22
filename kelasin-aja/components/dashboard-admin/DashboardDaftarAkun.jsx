@@ -11,6 +11,8 @@ export default function DashboardDaftarAkun(){
     role : "Pengajar"
   })
 
+  const [error, setError] = useState("")
+  const [message, setMessage] = useState("")
   const [data, setData] = useState()
   const [option, setOption] = useState()
   const [selectedOptions, setSelectedOptions] = useState(null);
@@ -34,8 +36,6 @@ export default function DashboardDaftarAkun(){
       }),
   };
 
-
-
   useEffect(() => {
     axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then((result) => {
       axios.get('http://127.0.0.1:8000/api/kelas', {
@@ -47,9 +47,11 @@ export default function DashboardDaftarAkun(){
         HandleData(res.data)
       }).catch((err) => {
         console.log(err)
+        setError("Kesalahan dalam Get Data Kelas")
       })
     }).catch((err) => {
       console.log(err)
+      setError("Kesalahan dalam get CSRF")
     });
   }, [])
 
@@ -61,21 +63,21 @@ export default function DashboardDaftarAkun(){
     setOption(temp)
   }
 
-  const temp = (e) => {
-    e.preventDefault()
-    ValidasiInput()
-  }
+  // const temp = (e) => {
+  //   e.preventDefault()
+  //   ValidasiInput()
+  // }
 
   const ValidasiInput = () => {
     const msg = false
     if (inputs.email.length === 0 || inputs.nama.length === 0 || inputs.password.length === 0 || selectedOptions === null){
-      console.log("ada yang kosong")
+      setError("ada yang kosong")
     } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(inputs.email)) {
-      console.log("email masih salah")
-    } else if (inputs.nama.length < 8){
-      console.log("Nama Kurang dari 8")
+      setError("email masih salah")
+    } else if (inputs.nama.length < 5){
+      setError("Nama Kurang dari 8")
     } else if (inputs.password.length < 8){
-      console.log("Password Kurang dari 8")
+      setError("Password Kurang dari 8")
     }else {
       return true
     }
@@ -86,39 +88,49 @@ export default function DashboardDaftarAkun(){
     e.preventDefault()
     console.log(inputs)
     console.log(selectedOptions)
-    // if(ValidasiInput()){
-    //   axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then((result) => {
-    //     axios.post('http://127.0.0.1:8000/api/register', {   
-    //       email : "test1234567@gmail.com",
-    //       nama : "test1234567",
-    //       password : "test1234567",
-    //       jenis_user : "Pelajar",
-    //     }).then((res) => {
-    //       console.log(res)
-    //       axios.post("http://127.0.0.1:8000/api/UserKelas", {
-    //         headers : {
-    //           'Authorization' : `Bearer ${Cookies.get('token')}`
-    //         },
-    //         data : {
-    //           namaUser : "test1234567",
-    //           email : "test1234567@gmail.com",
-    //           kelas : selectedOptions[0].label
-    //         }
-    //       }).then((res) => {
-    //         console.log(res)
-    //       })
-          
-    //     }).catch((err) => {
-    //       console.log(err)
-    //     })
-    //   }).catch((err) => {
-    //     console.log(err)
-    //   });
-    // }
+    if(ValidasiInput()){
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then((result) => {
+        axios.post('http://127.0.0.1:8000/api/register', {   
+          email : inputs.email,
+          nama : inputs.nama,
+          password : inputs.password,
+          jenis_user : inputs.role,
+        }).then((res) => {
+          // console.log(res)
+          selectedOptions.map((data, index) => {
+              axios.post('http://127.0.0.1:8000/api/UserKelas', 
+              { 
+                namaUser: inputs.nama,
+                email : inputs.email,
+                kelas : data.label
+              }, 
+              {
+              headers : {
+                'Authorization' : `Bearer ${Cookies.get('token')}`
+              }
+            }).then((res) => {
+              // console.log(res)
+              setMessage("Akun dan Kelas Berhasil di daftarkan")
+            }).catch((err) => {
+              console.log(err)
+              setError("Kesalahan Mendaftarkan User dengan Kelas")
+            })
+          })
+        }).catch((err) => {
+          console.log(err)
+          setError("Kesalahan Mendaftarkan Akun")
+        })
+      }).catch((err) => {
+        console.log(err)
+        setError("Kesalahan dalam get CSRF")
+      });
+    }
   }
 
-
-
+  useEffect(() => {
+    setError("")
+    setMessage("")
+  }, [inputs])
 
   return(
   <div className="flex flex-col w-[510px] mx-auto mt-[70px]">
@@ -168,6 +180,17 @@ export default function DashboardDaftarAkun(){
         </div>
       </div>
       <div className="flex justify-center">
+        <div>
+        {
+          error.length > 0 ? <p className="text-red-500 font-bold py-2">{error}</p> : ""
+        }
+        {
+          message.length > 0 ? <p className="text-green-500 font-bold py-2">{message}</p> : ""
+        }
+        </div>
+      </div>
+      <div className="flex justify-center">
+
         <button type="submit" className="flex justify-center bg-black text-white py-3 px-10 rounded-[15px] tracking-wide font-[700] cursor-pointer" onClick={(e) => HandlePostAkun(e)}>
           SUBMIT
         </button>
