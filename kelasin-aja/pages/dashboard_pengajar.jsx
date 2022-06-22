@@ -5,6 +5,16 @@ import Sidebar from '../components/sidebar/Sidebar'
 import Footer from '../components/footer/Footer'
 
 export default function Home() {
+  const data = [
+    {
+      title : "Pendaftaran Akun",
+      link : "/Admin/DaftarAkun"
+    },
+    {
+      title : "Pendaftaran Kelas",
+      link : "/Admin/DaftarKelas"
+    }
+  ]
   return (
     <div className="bg-slate-200">
       <Head>
@@ -13,7 +23,7 @@ export default function Home() {
       </Head>
       <Navbar />
       <div className='flex'>
-        <Sidebar />
+        <Sidebar data={data}/>
         <div className="flex flex-col w-[877px] mx-auto mt-[25px] border-2">
           <div className=' w-[877px] h-[245px] bg-[#C4C4C4] rounded-[10px] shadow'>
             <p className='text-[64px] text-white font-sans text-center mt-20'>KELAS A</p>

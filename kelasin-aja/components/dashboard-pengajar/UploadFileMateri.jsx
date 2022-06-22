@@ -1,8 +1,9 @@
-export default function UploadF(){
+export default function UploadF({title}){
+    console.log(title)
     return(
         <div>
             <div className='flex w-[877px] h-[245px] border-2 border-black items-center justify-center bg-[#C4C4C4] rounded-[8px] shadow-lg text-[100px] text-[white] '>
-                <h1>KELAS A</h1>
+                <h1>KELAS {title}</h1>
             </div>
             <div className='w-[877px] h-[496px] bg-[#F2F2F2] items-center justify-center rounded-[8px] shadow-lg p-10 mt-5'>
                 <h1 className="text-left text-[36px] font-[700] leading-[54px]">UploadFileMateri</h1>

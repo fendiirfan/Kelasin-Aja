@@ -4,7 +4,7 @@ const Sidebar = ({data, active}) => {
 	// console.log(data)
 	
 	return(
-		<div className="pt-[30px] px-[30px] w-[250px] bg-white h-[84vh]">
+		<div className="pt-[30px] px-[30px] w-[250px] bg-white min-h-screen">
 			<p className="font-bold">Pages</p>
 			<div>
 				<ul>

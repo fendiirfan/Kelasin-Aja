@@ -1,8 +1,8 @@
-export default function BuatFormTugas(){
+export default function BuatFormTugas({title}){
     return(
         <div>
             <div className='flex w-[877px] h-[245px] border-2 border-black items-center justify-center bg-[#C4C4C4] rounded-[8px] shadow-lg text-[100px] text-[white]'>
-            KELAS A
+            KELAS {title}
             </div>
             <div className='flex w-[877px] h-[582px] border-2 border-black items-center bg-[#ffffff] rounded-[8px] mt-[30px] shadow-lg'>
                 <div className='flex w-[242px] h-[496px] bg-[#F2F2F2] ml-[30px] items-center justify-center rounded-[8px] shadow-lg'>
