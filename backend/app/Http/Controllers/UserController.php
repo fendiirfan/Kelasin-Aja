@@ -40,7 +40,7 @@ class UserController extends Controller
             $user = User::create($data);
             return response("Success", 200);
         }catch(\Illuminate\Validation\ValidationException $e){
-            return response("Nama Tidak Valid", 400);
+            return response("Input Tidak Valid", 400);
         }catch(\Exception $e){
             return response("Internal Server Error", 500);
         }
