@@ -74,7 +74,7 @@ export default function pagesUploadMateri(){
         <div className='flex'>
         <Sidebar data={data} active={SelectedSidebar(data)}/>
           <div className='flex justify-center w-screen py-6'>
-            <UploadFileMateri title={data[SelectedSidebar(data)].title}/>
+            <UploadFileMateri title={data[SelectedSidebar(data)].title} id={router.query.id}/>
           </div>
         </div>
       }

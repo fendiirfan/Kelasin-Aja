@@ -73,7 +73,7 @@ export default function PagesBuatTugas(){
         <div className='flex'>
         <Sidebar data={data} active={SelectedSidebar(data)}/>
           <div className='flex justify-center w-screen py-6'>
-            <BuatFormTugas title={data[SelectedSidebar(data)].title}/>
+            <BuatFormTugas title={data[SelectedSidebar(data)].title} id={router.query.id}/>
           </div>
         </div>
       }
