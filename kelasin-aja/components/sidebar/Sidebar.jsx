@@ -1,7 +1,30 @@
+import axios from 'axios'
+import { route } from 'next/dist/server/router'
 import Link from 'next/link'
+import Cookies from 'js-cookie';
+import { Router } from 'next/router';
+import { useRouter } from 'next/router'
 
 const Sidebar = ({data, active}) => {
 	// console.log(data)
+	const router = useRouter()
+	const handleExit = (e) =>{
+		e.preventDefault()
+		axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
+			.then((result)=>{
+				axios.post('http://127.0.0.1:8000/api/logout', {}, 
+					{
+					headers : {
+						'Authorization' : `Bearer ${Cookies.get('token')}`
+					}
+				})
+				Cookies.remove('token')
+				Cookies.remove('user')
+				router.push('/login')
+			}).catch((err)=>{
+				console.log(err)
+			})
+	}
 	
 	return(
 		<div className="pt-[30px] px-[30px] w-[250px] bg-white h-[84vh]">
@@ -30,7 +53,7 @@ const Sidebar = ({data, active}) => {
 				</ul>
 			</div>
 			<div className="flex justify-center pt-[100px]">
-				<button className="p-[10px] bg-[#FE2F2F] w-full text-white rounded-[8px]">Keluar</button>
+				<button onClick={handleExit} className="p-[10px] bg-[#FE2F2F] w-full text-white rounded-[8px]">Keluar</button>
 			</div>
 			
 		</div>
