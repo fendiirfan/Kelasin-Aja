@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 export default function PagesBuatVideoConference(){
   const router = useRouter()
-  console.log(router.query)
+  console.log(router.query.id)
 
   const [data, setData] = useState([{
     title : "home",
@@ -73,7 +73,7 @@ export default function PagesBuatVideoConference(){
         <div className='flex'>
         <Sidebar data={data} active={SelectedSidebar(data)}/>
           <div className='flex justify-center w-screen py-6'>
-            <BuatVideoConference title={data[SelectedSidebar(data)].title}/>
+            <BuatVideoConference title={data[SelectedSidebar(data)].title} id={router.query.id}/>
           </div>
         </div>
       }
