@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 
 const DashboardDaftarKelas = () =>{
+  // Get Controller Text
   const [Nama, setNama] = useState("")
   const [error, setError] = useState("")
   const [message, setMessage] = useState("")
