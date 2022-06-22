@@ -30,7 +30,7 @@ Route::middleware('auth:sanctum')->group(function () {
 // Kelas
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/kelas', [\App\Http\Controllers\KelasController::class, 'index']);
-    // Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
+    Route::get('/kelas/{id}', [\App\Http\Controllers\KelasController::class, 'showbyid']);
     // Route::post('/kelas', [\App\Http\Controllers\KelasController::class, 'store']);
     Route::post('/BuatKelas', [\App\Http\Controllers\KelasController::class, 'createKelas']);
     Route::get('/getKelasByIdUser/{id}', [\App\Http\Controllers\KelasController::class, 'getKelasByIdUser']);
