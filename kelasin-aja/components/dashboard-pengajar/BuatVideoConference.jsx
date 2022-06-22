@@ -1,4 +1,4 @@
-
+import Link from "next/link"
 
 export default function BuatVideoConference({title}){
   return(
@@ -9,9 +9,16 @@ export default function BuatVideoConference({title}){
     <div className='bg-white rounded-[10px] w-[877px] h-[582px] mt-[22px] shadow-lg'>
       <div className='ml-10 mr-10 mt-20 flex  justify-center '>
         <div className='flex items-center justify-center  mr-[44px] w-[242px] h-[401px] bg-[#F2F2F2] rounded-10 shadow-lg'>
-          <button className='w-[179px] h-[39px] bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 border border-gray-400 rounded shadow'>
-            Buat Link Meet
-          </button>
+          
+          <Link href="https://meet.google.com/" passHref={true}>
+            <a target="_blank">
+              <button className='w-[179px] h-[39px] bg-white hover:bg-gray-100 text-gray-800 font-bold py-2 px-4 border border-gray-400 rounded shadow'>
+                Buat Link Meet
+              </button>
+            </a>
+          </Link>
+
+          
         </div>
         <div className='w-[488px] h-[401px]  bg-[#F2F2F2] rounded-10 shadow-lg'>
           <div className='border-1 ml-[20px] mr-[20px] mt-[35px] flex flex-col justify-center items-center'>
