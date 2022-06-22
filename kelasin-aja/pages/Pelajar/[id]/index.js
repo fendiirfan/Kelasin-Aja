@@ -15,7 +15,7 @@ export default function DashboardKelas() {
 
   const [data, setData] = useState([{
     title : "home",
-    link : "/Pengajar"
+    link : "/Pelajar"
   }])
   const [loading, setLoading ] = useState(true)
   const [loading2, setLoading2 ] = useState(true)
@@ -106,7 +106,7 @@ export default function DashboardKelas() {
     const temp = respone.map((data, index) => {
       return {
         title : data.nama,
-        link : "/Pengajar/" + data.class_id
+        link : "/Pelajar/" + data.class_id
       }
     })
     setData(data.concat(temp))
@@ -122,7 +122,7 @@ export default function DashboardKelas() {
 
   const SelectedSidebar = (data) => {
     for (let i = 0; i < data.length; i++){
-      if(data[i].link === "/Pengajar/" + router.query.id){
+      if(data[i].link === "/Pelajar/" + router.query.id){
         return i
       }
     }
