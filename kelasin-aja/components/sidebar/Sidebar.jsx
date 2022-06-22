@@ -1,25 +1,29 @@
+import Link from 'next/link'
 
-
-const Sidebar = ({data}) => {
-	console.log(data)
+const Sidebar = ({data, active}) => {
+	// console.log(data)
 	
 	return(
 		<div className="pt-[30px] px-[30px] w-[250px] bg-white h-[84vh]">
-			<p>Pages</p>
+			<p className="font-bold">Pages</p>
 			<div>
 				<ul>
 					{data.map((data, dataIdx) => {
-						return( (dataIdx === 0) ?  
-							<li key={dataIdx} className='pb-[10px]'>
+						return( (dataIdx === active) ?  
+							<li key={dataIdx} className='pb-[10px] cursor-pointer'>
+								<Link href={data.link}>
 								<div className="border bg-[#053742] rounded-[7px] w-[177px]">
-									<p className="text-center text-[16px] p-[10px] text-white">{data}</p>
+									<p className="text-center text-[16px] p-[10px] text-white">{data.title}</p>
 								</div>
+								</Link>
 							</li>
 							:
-							<li key={dataIdx} className='pb-[10px] border-b-2'>
-								<div className="rounded-[7px] w-[177px]">
-									<p className="text-center text-[16px] p-[10px]">{data}</p>
-								</div>
+							<li key={dataIdx} className='pb-[10px] border-b-2 cursor-pointer mb-2'>
+								<Link href={data.link}>
+									<div className="rounded-[7px] w-[177px]">
+										<p className="text-center text-[16px] p-[10px]">{data.title}</p>
+									</div>
+								</Link>
 							</li>
 						)
 					})}

@@ -1,51 +1,70 @@
 import axios from "axios";
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
+import Cookies from 'js-cookie';
+// import { api } from "../../utils/apiHelpers";
 
 const Login = () => {
   const router = useRouter()
   const [inputs, setInputs ] = useState({
     email : "",
-    password : "",
-    role : ""
+    password : ""
   })
+
+  const [error ,setError] = useState("")
 
   const handleLogin = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:8000/api/login", {
-      email : inputs.email,
-      password : inputs.password,
-      // role : inputs.role.toLowerCase()
-    }).then((res) => {
-      console.log(res)
-      console.log(res.status)
-      if(res.status === 200){
-        if(inputs.role.toLowerCase() === "admin"){
-          router.push("/admin/DaftarAkun")
-        } else if (inputs.role.toLowerCase() === "pengajar"){
-          router.push("/")
-        } else {
-          router.push("/")
-        }
-      }
-
-    }).catch((e) => {
-      console.log(e.response)
+    if(ValidasiInput){
+      axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then((res) => {
+        // console.log(res)
+        axios.post("http://127.0.0.1:8000/api/login", {
+        email : inputs.email,
+        password : inputs.password
+      }).then((res) => {
+        // console.log(res.data)
+        Cookies.set('token', res.data.token)
+        Cookies.set('user', JSON.stringify(res.data.user))
+        setError("")
+        RouteRedirect(res.data.user.jenis_user)
+      }).catch((e) => {
+        console.log(e)
+        setError("Login Gagal")
+      })
     })
+    } else {
+      setError("Input Tidak Boleh Kosong")
+    }
   }
 
-  // useEffect(() => {
-  //   axios.post("http://localhost:8000/api/login", {
-  //     email : "zendy@gmail.com",
-  //     password : 'qwerty123'
-  //   }).then((res) => {
-  //     console.log(res.data)
-  //   }).catch((e) => {
-  //     console.log(e.response)
-  //   })
-  // })
+  const ValidasiInput = () => {
+    if(inputs.email.length === 0 || inputs.password.length === 0){
+      return false
+    } else {
+      return true
+    }
+  }
 
-  // console.log(inputs)
+  const RouteRedirect = (role) => {
+    if(role === "Admin"){
+      router.push("/Admin/DaftarAkun")
+    } else if (role === "Pelajar") {
+      router.push("/Admin/DaftarAkun")
+    } else if (role === "Pengajar") {
+      router.push("/Admin/DaftarAkun")
+    } else {
+      router.push("/login")
+    }
+  }
+
+  useEffect(() => {
+   if(Cookies.get('user')){
+    RouteRedirect(JSON.parse(Cookies.get('user')).jenis_user)
+   } else {
+    RouteRedirect('')
+   }
+  }, [])
+
 
   return(
     <div className="grid place-items-center h-[80vh] mx-auto">
@@ -66,7 +85,7 @@ const Login = () => {
             />
           </div>
           <div className="flex justify-center space-x-3 font-[700] text-[18px] leading-[27px] py-4">
-            <div>
+            {/* <div>
               <input type="radio" value="Pelajar" id="Pelajar" name="Pelajar" onChange={(e) => {setInputs({...inputs, ['role'] : e.target.value})}}
                 className="appearance-none rounded-full h-[28px] w-[28px] border border-black bg-white checked:bg-[#031D23] checked:border-black focus:outline-none transition duration-200 float-left mr-4 cursor-pointer"
               />
@@ -83,7 +102,10 @@ const Login = () => {
                 className="appearance-none rounded-full h-[28px] w-[28px] border border-black bg-white checked:bg-[#031D23] checked:border-black focus:outline-none transition duration-200 float-left mr-4 cursor-pointer"
               />
               <label>Admin</label>
-            </div>
+            </div> */}
+            <p className="text-red-700">
+              {error}
+            </p>
           </div>
           <button type="submit" className="w-full flex justify-center bg-black text-white p-3 rounded-[15px] tracking-wide font-[700] cursor-pointer" onClick={(e) => (handleLogin(e))}>
             Masuk

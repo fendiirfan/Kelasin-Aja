@@ -14,10 +14,10 @@ class KelasController extends Controller
     {
         try{
             $kelas = Kelas::all();
-            dd($kelas);
-            // response($kelas,200);
+            // dd($kelas);
+            return response($kelas,200);
         }catch(\Exception $e){
-            response("Internal Server Error", 500);
+            return response("Internal Server Error", 500);
         }
     }
 
@@ -25,10 +25,10 @@ class KelasController extends Controller
     {
         try{
             $kelas = Kelas::find($id);
-            dd($kelas);
-            // response($kelas,200);
+            // dd($kelas);
+            return response($kelas,200);
         }catch(\Exception $e){
-            response("Internal Server Error", 500);
+            return response("Internal Server Error", 500);
         }
     }
 
