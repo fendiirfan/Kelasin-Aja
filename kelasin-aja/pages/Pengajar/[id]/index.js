@@ -56,7 +56,6 @@ export default function KelasIDPengajar() {
         return i
       }
     }
-    
   }
 
   return (
@@ -75,7 +74,7 @@ export default function KelasIDPengajar() {
         <Sidebar data={data} active={SelectedSidebar(data)}/>
           <div className='flex justify-center w-screen py-6'>
             {/* <UploadFileMateri data={data[SelectedSidebar(data)]}/> */}
-            <DashboardPengajar title={data[SelectedSidebar(data)].title} link={data[SelectedSidebar(data)].link}/>
+            <DashboardPengajar title={data[SelectedSidebar(data)].title} link={data[SelectedSidebar(data)].link} loading={loading}/>
           </div>
         </div>
       }

@@ -83,11 +83,12 @@ export default function DashboardKelas() {
               // console.log(temp2)
               // console.log(temp3)
               handleKonten(temp, temp2, temp3)
+              setLoading2(false)
             })
           }).catch((err) => {
             console.log(err)
           })
-          setLoading2(false)
+          
         }).catch((err) => {
           console.log(err)
           // setError("Kesalahan dalam Get Data Kelas")
@@ -128,9 +129,9 @@ export default function DashboardKelas() {
     }
   }
 
-  useEffect(()=>{
-    console.log(konten)
-  }, [konten])
+  // useEffect(()=>{
+  //   console.log(konten)
+  // }, [konten])
 
   return (
     <div className="bg-slate-200">
