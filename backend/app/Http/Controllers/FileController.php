@@ -20,6 +20,7 @@ class FileController extends Controller
                 'link'=>$request->link,
                 'title'=>$request->title,
                 'description'=>$request->description,
+                'class_id' => $kelas->id,
             ]);
             return response("success", 200);
         }catch(\Illuminate\Validation\ValidationException $e){
