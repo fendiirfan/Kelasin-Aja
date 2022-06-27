@@ -20,7 +20,7 @@ const Sidebar = ({data, active}) => {
 				})
 				Cookies.remove('token')
 				Cookies.remove('user')
-				router.push('/login')
+				router.push('/')
 			}).catch((err)=>{
 				console.log(err)
 			})
