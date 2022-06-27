@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->unsignedBigInteger('class_id');
-            $table->string('file');
+            $table->string('link');
             $table->string('title');
+            $table->string('description');
 
             // Foreign key stuff
             $table->foreign('class_id')->references('id')->on('kelas');
