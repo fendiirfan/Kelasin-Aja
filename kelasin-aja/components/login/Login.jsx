@@ -56,7 +56,7 @@ const Login = () => {
     } else if (role === "Pengajar") {
       router.push("/Pengajar");
     } else {
-      router.push("/login");
+      router.push("/");
     }
   };
 

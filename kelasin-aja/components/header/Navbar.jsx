@@ -4,6 +4,7 @@ import {CgProfile} from 'react-icons/cg';
 import { useRouter } from 'next/router';
 
 function Navbar(){
+  
   // const[Name, setName] = useState("")
 
   // axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie')
@@ -17,12 +18,15 @@ function Navbar(){
         <p className="font-bold text-[31px]">Kelasin</p>
       </div>
       <div className="flex self-center">
+        {
+          Cookies.get('user')? 
         <div className='flex'>
           <CgProfile className='text-[25px]'/>
-          <span>{
-            Cookies.get('user')? <p>{JSON.parse(Cookies.get('user')).nama}</p>: "login"
-          }</span>
+          <p>{JSON.parse(Cookies.get('user')).nama}</p>
         </div>
+        : 
+        <p className='cursor-pointer underline' onClick={() => router.push("/")}>Login</p>
+        }
       </div>      
     </div>
   )
