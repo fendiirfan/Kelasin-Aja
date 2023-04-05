@@ -36,7 +36,7 @@ The following technologies are used in developing the KelasinAja website:
 * Next.js
 * Tailwind CSS
 
-## Design Document[link](https://docs.google.com/document/d/1C39UtMWtKXI5OvprHhPRIN5_VWhLBKDa/edit?usp=sharing&ouid=108283030983780061715&rtpof=true&sd=true)
+## Design Document [link](https://docs.google.com/document/d/1C39UtMWtKXI5OvprHhPRIN5_VWhLBKDa/edit?usp=sharing&ouid=108283030983780061715&rtpof=true&sd=true)
 
 ## List Teams
 
